@@ -30,7 +30,7 @@ public class MyArrayList {
     /**
      * @return bool atkarībā no tā vai masīvs ir pilns
      */
-    public boolean is_full() {
+    public boolean isFull() {
         if (counter == size)
             return true;
         else
@@ -41,7 +41,7 @@ public class MyArrayList {
     /**
      * @return bool atkarībā no tā vai masīvs ir tukšs
      */
-    public boolean is_empty() {
+    public boolean isEmpty() {
         if (counter == 0)
             return true;
         else
@@ -51,7 +51,7 @@ public class MyArrayList {
     /**
      * @return klases paramentru counter
      */
-    public int get_counter() {
+    public int getCounter() {
         return counter;
     }
 
@@ -79,7 +79,7 @@ public class MyArrayList {
      * 
      * @param val
      */
-    public void push_back(int val) {
+    public void pushBack(int val) {
         if (is_full()) {
             resize();
         }
@@ -189,7 +189,7 @@ public class MyArrayList {
      * @return masīvs ar elementiem kuri seko elementam kas vienādi ar val
      * @throws Exception
      */
-    public int[] get_next(int val) throws Exception {
+    public int[] getNext(int val) throws Exception {
         if (is_empty()) {
             Exception exc = new Exception("Sarakstst ir tukšs, tajā neko nevar atrast");
             throw exc;

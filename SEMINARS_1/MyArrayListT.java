@@ -2,8 +2,8 @@ package dataStr.SEMINARS_1;
 
 import java.util.Arrays;
 
-public class MyArrayList {
-    private int[] elements;
+public class MyArrayListT<Type> {
+    private Type[] elements;
     private int counter = 0;
     private final int DEFAULT_SIZE = 10;
     private int size = DEFAULT_SIZE;
@@ -11,8 +11,8 @@ public class MyArrayList {
     /**
      * Noklusējuma konstuktors, izveido sarakstu ar DEFAULT_SIZE vietām
      */
-    public MyArrayList() {
-        elements = new int[size];
+    public MyArrayListT() {
+        elements = (Type[]) new Object[size];
     }
 
     /**
@@ -20,11 +20,11 @@ public class MyArrayList {
      * 
      * @param input_size
      */
-    public MyArrayList(int input_size) {
+    public MyArrayListT(int input_size) {
         if (input_size > 0) {
             size = input_size;
         }
-        elements = new int[size];
+        elements = (Type[]) new Object[size];
     }
 
     /**
@@ -65,7 +65,7 @@ public class MyArrayList {
         } else {
             size *= 2;
         }
-        int[] temp = new int[size];
+        Type[] temp = (Type[]) new Object[size];
         // pārkopē visus elementus uz temp
         for (int i = 0; i < counter; i++) {
             temp[i] = elements[i];
@@ -78,7 +78,7 @@ public class MyArrayList {
      * 
      * @param val
      */
-    public void pushBack(int val) {
+    public void pushBack(Type val) {
         if (isFull()) {
             resize();
         }
@@ -92,7 +92,7 @@ public class MyArrayList {
      * @param position
      * @param val
      */
-    public void insert(int position, int val) throws Exception {
+    public void insert(int position, Type val) throws Exception {
         if (position < 0) {
             Exception exc = new Exception("Neatbilstosi ievadlita pozicija");
             throw exc;
@@ -130,7 +130,6 @@ public class MyArrayList {
         for (int i = position; i < counter - 1; i++) {
             elements[i] = elements[i + 1];
         }
-        elements[counter - 1] = 0;
         counter--;
     }
 
@@ -140,7 +139,7 @@ public class MyArrayList {
      * @return elementu kas ir position indeksā
      * @throws Exception
      */
-    public int retreve(int position) throws Exception {
+    public Type retreve(int position) throws Exception {
         if (position < 0) {
             Exception exc = new Exception("Neatbilstosi ievadlita pozicija");
             throw exc;
@@ -152,7 +151,7 @@ public class MyArrayList {
      * @param val
      * @return masīvs ar elementu indeksiem kuri vienādi ar val
      */
-    public int[] find(int val) throws Exception {
+    public int[] find(Type val) throws Exception {
         if (isEmpty()) {
             Exception exc = new Exception("Sarakstst ir tukšs, tajā neko nevar atrast");
             throw exc;
@@ -160,7 +159,7 @@ public class MyArrayList {
 
         int occurence = 0;
         for (int i = 0; i < counter; i++) {
-            if (elements[i] == val) {
+            if (elements[i].equals(val)) {
                 occurence++;
             }
         }
@@ -172,7 +171,7 @@ public class MyArrayList {
 
         int iterTemp = 0;
         for (int i = 0; i < counter; i++) {
-            if (elements[i] == val) {
+            if (elements[i].equals(val)) {
                 result[iterTemp++] = i;
             }
         }
@@ -186,13 +185,13 @@ public class MyArrayList {
      * @return masīvs ar elementiem kuri seko elementam kas vienādi ar val
      * @throws Exception
      */
-    public int[] getNext(int val) throws Exception {
+    public Type[] getNext(Type val) throws Exception {
         if (isEmpty()) {
             Exception exc = new Exception("Sarakstst ir tukšs, tajā neko nevar atrast");
             throw exc;
         }
         int[] positions = find(val);
-        int[] result = new int[positions.length];
+        Type[] result = (Type[]) new Object[positions.length];
         for (int i = 0; i < positions.length; i++) {
             int tempPosition = positions[i];
             if (tempPosition < counter - 1) {
@@ -209,11 +208,11 @@ public class MyArrayList {
     public void sort() {
         for (int i = 0; i < counter - 1; i++) {
             for (int j = 0; j < counter - i - 1; j++) {
-                if (elements[j] > elements[j + 1]) {
-                    // swap elements[j+1] and elements[j]
-                    int temp = elements[j];
-                    elements[j] = elements[j + 1];
-                    elements[j + 1] = temp;
+                if (((Comparable) (elements[i])).compareTo(elements[j]) == -1) {
+                    // swap elements[i] and elements[j]
+                    Type temp = elements[i];
+                    elements[i] = elements[j];
+                    elements[j] = temp;
                 }
             }
         }
@@ -230,7 +229,7 @@ public class MyArrayList {
      * clears the elements
      */
     public void clear() {
-        elements = new int[size];
+        elements = (Type[]) new Object[size];
         counter = 0;
         // izsauc garbage collector
         System.gc();

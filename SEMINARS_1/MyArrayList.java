@@ -137,6 +137,12 @@ public class MyArrayList {
         counter--;
     }
 
+    /**
+     * 
+     * @param position
+     * @return elementu kas ir position indeksā
+     * @throws Exception
+     */
     public int retreve(int position) throws Exception {
         if (position < 0) {
             Exception exc = new Exception("Neatbilstosi ievadlita pozicija");
@@ -147,7 +153,7 @@ public class MyArrayList {
 
     /**
      * @param val
-     * @return index of first occurance of val. If val not found, returns -1
+     * @return masīvs ar elementu indeksiem kuri vienādi ar val
      */
     public int[] find(int val) throws Excepiton {
         if (is_empty()) {
@@ -161,30 +167,48 @@ public class MyArrayList {
                 occurence++;
             }
         }
-        int[] temp = new int[occurence];
+        int[] result = new int[occurence];
 
         if (occurence == 0) {
-            return temp;
+            return result;
         }
 
         int iterTemp = 0;
         for (int i = 0; i < counter; i++) {
             if (elements[i] == val) {
-                temp[iterTemp++] = val;
+                result[iterTemp++] = i;
             }
         }
 
-        return temp;
+        return result;
     }
 
-    public int get_next(int val) {
-        // TODO: Izveidot funkciju, kas kā argumentu saņem elementu un atgriež nākamo
-        // elementu
-        // (veikt nepieciešamās pārbaudes);
-        int a = 0;
-        return a;
+    /**
+     * 
+     * @param val
+     * @return masīvs ar elementiem kuri seko elementam kas vienādi ar val
+     * @throws Exception
+     */
+    public int[] get_next(int val) throws Exception {
+        if (is_empty()) {
+            Exception exc = new Exception("Sarakstst ir tukšs, tajā neko nevar atrast");
+            throw exc;
+        }
+        int[] positions = find(val);
+        int[] result = new int[position.length];
+        for (int i = 0; i < positions.length; i++) {
+            int tempPosition = positions[i];
+            if (tempPosition < counter - 1) {
+                result[i] = elements[tempPosition + 1];
+            }
+        }
+        return result;
+
     }
 
+    /**
+     * ol' reliable Bubble sort
+     */
     public void sort() {
         for (int i = 0; i < counter - 1; i++) {
             for (int j = 0; j < counter - i - 1; j++) {
@@ -198,10 +222,16 @@ public class MyArrayList {
         }
     }
 
+    /**
+     * prints the elements
+     */
     public void print() {
         System.out.println(Arrays.toString(elements));
     }
 
+    /**
+     * clears the elements
+     */
     public void clear() {
         int[] temp = new int[size];
         elements = temp;

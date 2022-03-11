@@ -1,4 +1,3 @@
-package dataStr.SEMINARS_1;
 
 import java.io.File; // Import the File class
 import java.util.Arrays;
@@ -12,13 +11,13 @@ public class test {
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine()) {
             int data = myReader.nextInt();
-            list.push_back(data);
+            list.pushBack(data);
         }
         myReader.close();
 
         list.print();
 
-        list.push_back(100);
+        list.pushBack(100);
         list.print();
         list.insert(0, 100);
         list.print();

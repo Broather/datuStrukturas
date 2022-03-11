@@ -80,7 +80,7 @@ public class MyArrayList {
      * @param val
      */
     public void pushBack(int val) {
-        if (is_full()) {
+        if (isFull()) {
             resize();
         }
         elements[counter++] = val;
@@ -99,7 +99,7 @@ public class MyArrayList {
             Exception exc = new Exception("Neatbilstosi ievadlita pozicija");
             throw exc;
         }
-        if (is_full()) {
+        if (isFull()) {
             resize();
         }
 
@@ -125,7 +125,7 @@ public class MyArrayList {
      * @throws Exception ja saraksts jau tukšs
      */
     public void remove(int position) throws Exception {
-        if (is_empty()) {
+        if (isEmpty()) {
             Exception exc = new Exception("Saraksts jau ir tukss, neko nevar idzest");
             throw exc;
         }

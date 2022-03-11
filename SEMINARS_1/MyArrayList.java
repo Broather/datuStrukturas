@@ -92,7 +92,7 @@ public class MyArrayList {
      * @param position
      * @param val
      */
-    public void insert(int position, int val) throws Exception {
+    public void insert(int val, int position) throws Exception {
         if (position < 0) {
             Exception exc = new Exception("Neatbilstosi ievadlita pozicija");
             throw exc;

@@ -1,6 +1,6 @@
 package dataStr.SEMINARS_1.models;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private static int idCounter = 10000;
 
     private int id;
@@ -57,5 +57,17 @@ public class Student {
 
     public String toString() {
         return id + " " + name + " " + surname;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        // salīdzina Uzvārda pirmos burtus
+        if (surname.charAt(0) > o.surname.charAt(0)) {
+            return 1;
+        } else if (surname.charAt(0) < o.surname.charAt(0)) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

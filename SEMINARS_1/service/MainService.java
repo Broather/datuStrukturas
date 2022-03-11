@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class MainService {
     public static void main(String[] args) {
-        MyArrayListT<Integer> intList = new MyArrayListT(4);
+        MyArrayListT<Integer> intList = new MyArrayListT<>(4);
 
         File myObj = new File("dataStr/SEMINARS_1/numbers.txt");
         Scanner myReader;
